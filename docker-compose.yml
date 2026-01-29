@@ -7,7 +7,7 @@ services:
     network_mode: service:gluetun
     working_dir: /app
     environment:
-      - PORT=5555
+      - PORT=${PORT}
       - SHAREWOOD_LOGIN=${SHAREWOOD_LOGIN}
       - SHAREWOOD_PASSWORD=${SHAREWOOD_PASSWORD}
       - SHAREWOOD_TRADE_OPTION=${SHAREWOOD_TRADE_OPTION}
@@ -30,4 +30,4 @@ services:
       - SERVER_COUNTRIES=France,Netherlands
       - TZ=Europe/Paris 
     ports:
-      - 5555:5555
+      - ${PORT}:${PORT}
