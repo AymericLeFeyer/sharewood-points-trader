@@ -4,6 +4,7 @@ services:
   app:
     build: .
     container_name: sharewood_points_trader
+    network_mode: service:gluetun
     ports:
       - "5555:5555"
     working_dir: /app
@@ -15,3 +16,20 @@ services:
       - MATTERMOST_WEBHOOK=${MATTERMOST_WEBHOOK}
     restart: always
     command: npm run start
+  
+  gluetun:
+    image: qmcgaw/gluetun:v3.39.0
+    container_name: gluetun_vpn
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - VPN_SERVICE_PROVIDER=protonvpn
+      - OPENVPN_USER=${OPENVPN_USER}
+      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+      - SERVER_COUNTRIES=France,Netherlands
+      - TZ=Europe/Paris 
+    ports:
+      - 5555:5555
