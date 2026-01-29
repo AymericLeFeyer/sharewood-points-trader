@@ -1,0 +1,17 @@
+version: '3.8' 
+
+services:
+  app:
+    build: .
+    container_name: sharewood_points_trader
+    ports:
+      - "5555:5555"
+    working_dir: /app
+    environment:
+      - PORT=5555
+      - SHAREWOOD_LOGIN=${SHAREWOOD_LOGIN}
+      - SHAREWOOD_PASSWORD=${SHAREWOOD_PASSWORD}
+      - SHAREWOOD_TRADE_OPTION=${SHAREWOOD_TRADE_OPTION}
+      - MATTERMOST_WEBHOOK=${MATTERMOST_WEBHOOK}
+    restart: always
+    command: npm run start
