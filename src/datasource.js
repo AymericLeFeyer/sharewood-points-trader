@@ -6,7 +6,7 @@ stealth.enabledEvasions.delete("user-agent-override");
 firefox.use(stealth);
 
 exports.openSharewoodAndTradePoints = async (option) => {
-  const browser = await firefox.launch({ headless: false });
+  const browser = await firefox.launch({ headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
 
