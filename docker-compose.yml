@@ -5,8 +5,6 @@ services:
     build: .
     container_name: sharewood_points_trader
     network_mode: service:gluetun
-    ports:
-      - "5555:5555"
     working_dir: /app
     environment:
       - PORT=5555
